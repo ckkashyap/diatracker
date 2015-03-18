@@ -1,3 +1,4 @@
+/*
 var x = 1;
 
 function setClass(idx, className) {
@@ -14,3 +15,4 @@ function switchPage() {
     }
     setClass(x, "fullpageVisible");
 }
+*/

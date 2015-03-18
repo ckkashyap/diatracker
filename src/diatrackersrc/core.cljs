@@ -6,3 +6,11 @@
 (enable-console-print!)
 
 (println "Hello world!")
+
+
+(defn ^:export switchPage []
+  (println "Hello world!"))
+
+
+(defn ^:export Kashyap []
+  (println "Hello world!"))

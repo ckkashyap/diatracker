@@ -1,12 +1,34 @@
 body {
-    background-color: green;
+    background-color: linen;
 }
 
+div.button {
+    border: 2px solid;
+    border-radius: 25px;
+    display:inline-block;
+    padding:10px;
+    box-shadow: 2px 2px 1px #888888;
+    margin:0 auto;
+}
+
+div.fullscreen {
+    border-style: solid;
+    border-width: medium;
+    border-color: green;
+    height: 80vh;
+    margin-top: 10vh;
+}
+
+
 div.fullpageVisible {
+    position: relative;
     border-style: solid;
     border-width: medium;
     border-color: red;
-    display: block;
+    width: 90%;
+    margin:0 auto;
+    display:flex;
+    justify-content: space-between;
 }
 
 div.fullpageInvisible {

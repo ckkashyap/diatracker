@@ -1,12 +1,27 @@
 <html>
+<head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="maximum-scale=1, initial-scale=1">
+</head>
+
   <body>
-    <input type="button" onclick="switchPage()"/>
-    <div id="page1" class="fullpageVisible">
-      hello world1
-    </div>
-    <div id="page2" class="fullpageInvisible">
-      hello world2
+    <div class="fullscreen">
+      <input type="button" onclick="diatrackersrc.core.switchPage()"/>
+      <div id="page1" class="fullpageVisible">
+	<div class="button">
+	  Reports
+	</div>
+	<div class="button">
+	  History
+	</div>
+	<div class="button">
+	  Graphs
+	</div>
+      </div>
+      
+      <div id="page2" class="fullpageInvisible">
+	hello world2
+      </div>
     </div>
 
     
