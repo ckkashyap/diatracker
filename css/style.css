@@ -2,6 +2,12 @@ body {
     background-color: linen;
 }
 
+div {
+    border-style: solid;
+    border-width: medium;
+    border-color: green;
+}
+
 div.button {
     border: 2px solid;
     border-radius: 25px;
@@ -12,9 +18,6 @@ div.button {
 }
 
 div.fullscreen {
-    border-style: solid;
-    border-width: medium;
-    border-color: green;
     height: 80vh;
     margin-top: 10vh;
 }
@@ -22,18 +25,19 @@ div.fullscreen {
 
 div.fullpageVisible {
     position: relative;
-    border-style: solid;
-    border-width: medium;
-    border-color: red;
     width: 90%;
     margin:0 auto;
-    display:flex;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 div.fullpageInvisible {
-    border-style: solid;
-    border-width: medium;
-    border-color: red;
     display: none;
+}
+
+
+div.horizontalList {
+    display:flex;
+    justify-content: space-between;
+    margin-top:10vh ;
 }
