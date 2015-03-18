@@ -1,0 +1,17 @@
+body {
+    background-color: green;
+}
+
+div.fullpageVisible {
+    border-style: solid;
+    border-width: medium;
+    border-color: red;
+    display: block;
+}
+
+div.fullpageInvisible {
+    border-style: solid;
+    border-width: medium;
+    border-color: red;
+    display: none;
+}
