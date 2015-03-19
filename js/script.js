@@ -1,4 +1,4 @@
-/*
+
 var x = 1;
 
 function setClass(idx, className) {
@@ -8,11 +8,11 @@ function setClass(idx, className) {
 }
 
 function switchPage() {
-    setClass(x, "fullpageInvisible");
+    var px = x;
     x = x + 1;
     if ( x > 2) {
 	x = 1;
     }
     setClass(x, "fullpageVisible");
+    setClass(px, "fullpageInvisible");
 }
-*/

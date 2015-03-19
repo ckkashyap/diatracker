@@ -1,16 +1,21 @@
-(ns diatrackersrc.core
-  (:require [clojure.browser.repl :as repl]))
+(ns diatrackersrc.core)
 
-;; (repl/connect "http://localhost:9000/repl")
 
 (enable-console-print!)
 
-(println "Hello world!")
-
-
 (defn ^:export switchPage []
-  (println "Hello world!"))
+  (let [
+        pageNumberDiv (.getElementById js/document "pageNumber")
+        pageNumber (.-innerHTML pageNumberDiv)
+        newPageNumber (if (= pageNumber "1") "2" "1")
+        oldDiv (.getElementById js/document (str "page" pageNumber))
+        newDiv (.getElementById js/document (str "page" newPageNumber))
+        _ (set! (.-innerHTML pageNumberDiv) newPageNumber)
+        ]
+      (set! (.-className oldDiv) "fullPageInvisible")
+      (set! (.-className newDiv) "fullPageVisible")
+      (println pageNumber)
+      (println newPageNumber)
+  (println "Hello world123!")))
 
 
-(defn ^:export Kashyap []
-  (println "Hello world!"))

@@ -5,31 +5,25 @@
   </head>
 
   <body>
+    <div class="data" id="pageNumber">1</div>
     <div class="fullscreen">
-      <input type="button" onclick="diatrackersrc.core.switchPage()"/>
+      <!--input type="button" onclick="diatrackersrc.core.switchPage()"/-->
       <div id="page1" class="fullpageVisible">
-
 	<div class="horizontalList">
-	  <button>
+	  <button onclick="diatrackersrc.core.showReports()">
 	    Reports
 	  </button>
-	  <button>
+	  <button onclick="diatrackersrc.core.showHistory()">
 	    History
 	  </button>
-	  <button>
+	  <button onclick="diatrackersrc.core.showGraphs()">
 	    Graphs
 	  </button>
 	</div>
 
 	<div class="horizontalList">
-	  <button>
-	    Reports
-	  </button>
-	  <button>
-	    History
-	  </button>
-	  <button>
-	    Graphs
+	  <button class="bigButton" onclick="diatrackersrc.core.switchPage()">
+	    Add
 	  </button>
 	</div>
 
@@ -37,7 +31,11 @@
       </div>
       
       <div id="page2" class="fullpageInvisible">
-	hello world2
+	hello world
+	  <button class="bigButton" onclick="diatrackersrc.core.switchPage()">
+	    switch
+	  </button>
+
       </div>
     </div>
 

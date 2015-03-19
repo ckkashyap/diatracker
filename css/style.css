@@ -5,16 +5,40 @@ body {
 div {
     border-style: solid;
     border-width: medium;
-    border-color: green;
+    border-color: black;
+    border-width: 0px;
+}
+
+div.data {
+    display:none;
 }
 
 button {
-    border: 2px solid;
-    box-shadow: 2px 2px 1px #888888;
-    border-radius: 15px;
-    padding:10px;
+
     margin:0 auto;
+    display: block;
+    position: relative
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+    letter-spacing: -.05em;
+    font-family:  sans-serif;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+    border-radius: 300px;
+    z-index: 1;
+    border-width: 4px;
+    border-style: solid;
+
+    padding: 10px;
 }
+
+.bigButton {
+    width:50%;
+    background-color: rgba(100,255,100,0.9);
+}
+
 
 button:active {
     border: 2px solid;
@@ -31,14 +55,41 @@ div.fullscreen {
 
 div.fullpageVisible {
     position: relative;
+    float:top;
     width: 90%;
     margin:0 auto;
     display: flex;
     flex-direction: column;
+/*    transition: all 2s linear;
+    transform:translate(0px);
+    transition: opacity 1s linear, margin-top 1s step-start, z-index 1s step-start;*/
+
+/*    opacity: 1;
+    transition: opacity 1s, height 0;
+
+    transform: translateY(0px);
+    opacity:1;
+    transition: top 1s linear 1s, opacity 1s ease 1s;*/
+
+
 }
 
 div.fullpageInvisible {
-    display: none;
+    display:none;
+
+/*    transform: translateY(-2000px) translateZ(0);
+    opacity:0;
+    transition: opacity .3s ease 0s, transform 0s linear .9s;
+    height: 0;*/
+
+ /* opacity: 0;
+  transition: opacity 2s;
+  height: 0;*/
+
+  /*margin-top: -330px;
+  z-index: -5;
+  transition-timing-function: linear, step-end, step-end;
+  display:none;*/
 }
 
 
