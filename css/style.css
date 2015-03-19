@@ -13,6 +13,26 @@ div.data {
     display:none;
 }
 
+
+input.reading {
+    width:50%;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+textarea.reading {
+    width:50%;
+    height:30%;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+
+
 button {
 
     margin:0 auto;

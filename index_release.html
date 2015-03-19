@@ -26,17 +26,24 @@
 	    + Add
 	  </button>
 	</div>
-
-
       </div>
       
       <div id="page2" class="fullpageInvisible">
-	  <input type="text">
+	<div class="horizontalList">
+	  <input id="page2Reading" type="number" class="reading" value="100" placeholder="Enter reading"/>
+	</div>
 
+	<div class="horizontalList">
+	  <textarea id="page2Comments" class="reading" placeholder="Enter comments here"></textarea>
+	</div>
 
-	  <button class="bigButton" onclick="diatrackersrc.core.switchPage()">
-	    switch
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="diatrackersrc.core.saveData()">
+	    save
 	  </button>
+	</div>
+
+	
 
       </div>
     </div>
