@@ -64,7 +64,7 @@
 (defn persistRecord [m d y f v c]
   (let
       [ 
-       r  { :m m :d d :y y :f f :c c}
+       r  { :m m :d d :y y :f f :v v :c c}
        j  (clj->json r)
 
        storedMaxID (.-maxID js/localStorage)
