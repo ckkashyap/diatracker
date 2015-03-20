@@ -10,6 +10,18 @@
    "Oct" "Nov" "Dec"
 ])
 
+(def meals
+  [
+   "Before Breakfast"
+   "Breakfast"
+   "Before Lunch"
+   "Lunch"
+   "Snacks"
+   "Before Dinner"
+   "Dinner"
+   ])
+
+
 (defn initPage [pageNumber]
   (case pageNumber
     1 (do
@@ -44,6 +56,26 @@
       (set! (.-className toDiv) "fullPageVisible")
       (initPage to)
 ))
+
+(defn clj->json
+  [i]
+  (.stringify js/JSON (clj->js i)))
+
+(defn persistRecord [m d y f v c]
+  (let
+      [ 
+       r  { :m m :d d :y y :f f :c c}
+       j  (clj->json r)
+
+       storedMaxID (.-maxID js/localStorage)
+       maxID (js/parseInt (if storedMaxID storedMaxID "0"))
+       _ (set! (.-maxID js/localStorage) (+ 1 maxID))
+       key (str "reading" maxID)
+
+       _ (.setItem js/localStorage key j)
+       
+       ]
+    (println maxID)))
       
 (defn ^:export saveData []
   (let [
@@ -53,6 +85,8 @@
         readingIntVal (if (js/isNaN readingParseInt) 0 readingParseInt)
         comments (.getElementById js/document "page2Comments")
         commentsVal (.-value comments)
+        year (.getElementById js/document "page2Year")
+        yearVal (.-value year)
         
         getValFromList (fn [n]
                          (let [
@@ -72,6 +106,7 @@
     (.select reading)
     (if (> readingIntVal 0)
       (do
+        (persistRecord monthVal dayVal yearVal foodVal readingIntVal commentsVal )
         (println commentsVal)
         (set! (.-value reading) "100")
         (set! (.-value comments) "")      
@@ -84,3 +119,24 @@
   (if (saveData)
     (gotoPage 2 1)))
     
+
+
+
+(defn ^:export setDummyData []
+  (let [
+        startDate (js/Date. 2013 0 1 8 0 0 0)
+        newDate (fn [d ctr] (js/Date. (+ (* 1000 60 60 4 ctr) (.getTime startDate))))
+        ]
+    (.clear js/localStorage)
+    (dotimes [i 2000]
+      (let [
+            dt (newDate startDate i)
+            m (nth months (js/parseInt (.getMonth dt)))
+            d (.getDate dt)
+            y (+ 1900 (.getYear dt))
+            rand (js/Math.random)
+            f (nth meals (mod i 7))
+            v (js/Math.round (+ 70 (* rand 100)))
+            ]
+        (persistRecord m d y f v "hello")
+      ))))
