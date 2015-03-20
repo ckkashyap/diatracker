@@ -23,6 +23,7 @@
                 :output-dir "out"
                 :optimizations :none
                 :cache-analysis true
+                :externs ["diatracker.extern.js"]         
                 :source-map true}}
              {:id "release"
               :source-paths ["src"]
@@ -31,4 +32,5 @@
                 :output-to "out-adv/diatrackersrc.min.js"
                 :output-dir "out-adv"
                 :optimizations :advanced
+                :externs ["diatracker.extern.js"]         
                 :pretty-print false}}]})

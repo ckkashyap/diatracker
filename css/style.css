@@ -1,6 +1,7 @@
 body {
-    background-color: linen;
+  background: linear-gradient(white, #974); /* Standard syntax */
 }
+
 
 div {
     border-style: solid;
@@ -13,9 +14,44 @@ div.data {
     display:none;
 }
 
+select.reading {
+   width:90%;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+select.reading {
+    width:90%;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+
+select.date {
+    width:90px;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+
+input.date {
+    width:90px;
+    margin:0 auto;
+    padding:10px;
+    background: #5E768D;
+    border-radius: 10px;
+    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
+}
+
 
 input.reading {
-    width:50%;
+    width:90%;
     margin:0 auto;
     padding:10px;
     background: #5E768D;
@@ -23,8 +59,8 @@ input.reading {
     font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
 }
 textarea.reading {
-    width:50%;
-    height:30%;
+    width:90%;
+    height:100px;
     margin:0 auto;
     padding:10px;
     background: #5E768D;
