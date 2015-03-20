@@ -51,11 +51,23 @@
         readingVal (.-value reading)
         readingParseInt (js/parseInt readingVal)
         readingIntVal (if (js/isNaN readingParseInt) 0 readingParseInt)
-        
         comments (.getElementById js/document "page2Comments")
         commentsVal (.-value comments)
+        
+        getValFromList (fn [n]
+                         (let [
+                               div (.getElementById js/document n)
+                               val (.-value (aget (.-selectedOptions div) 0))
+                               ] val))
+
+        monthVal (getValFromList "page2MonthList")
+        dayVal (getValFromList "page2DayList")
+        foodVal (getValFromList "page2FoodList")
+
+
         ]
     (set! (.-value reading) "100")
+    (println foodVal monthVal dayVal)
     (.focus reading)
     (.select reading)
     (if (> readingIntVal 0)
