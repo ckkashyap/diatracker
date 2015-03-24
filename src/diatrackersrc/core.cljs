@@ -1,37 +1,11 @@
-(ns diatrackersrc.core)
+(ns diatrackersrc.core
+  (:require
+   [diatrackersrc.consts :as consts]
+  ))
 
 (enable-console-print!)
 
-(def months
-  [
-   "Jan" "Feb" "Mar"
-   "Apr" "May" "Jun"
-   "Jul" "Aug" "Sep"
-   "Oct" "Nov" "Dec"
-])
-
-(def meals
-  [
-   "Before Breakfast"
-   "After Breakfast"
-   "Before Lunch"
-   "After Lunch"
-   "After Snacks"
-   "Before Snacks"
-   "Before Dinner"
-   "After Dinner"
-   ])
-
-(def types 
-  [
-   "Sugar"
-   "BP"
-   "Temperature"
-   "Weight"
-   "Other"
-   ])
-
-
+(declare showHistory)
 
 (defn initPage [pageNumber]
   (case pageNumber
@@ -55,6 +29,7 @@
           )
         (println "Initializing page 2"))
     3 (do
+        (showHistory)
         (println "Initializing page 3"))
     
     (println "Cannot initialize" pageNumber)
@@ -89,7 +64,26 @@
        
        ]
     (println maxID)))
-      
+
+(defn readLastNRecords [n]
+  (let
+      [
+       storedMaxID (.-maxID js/localStorage)
+       startID (- storedMaxID 1)
+       ]
+  (loop [i n id startID v []]
+    (if (or (= i 0) (< id 0))
+      (do
+        (println v)
+        v)
+      (let [
+            key (str "reading" id)
+            val (js->clj (js/JSON.parse (.getItem js/localStorage key)))
+            ]
+        
+        (recur (dec i) (dec id) (conj v val)))))))
+  
+
 (defn ^:export saveData []
   (let [
         reading (.getElementById js/document "page2Reading")
@@ -134,27 +128,32 @@
     (gotoPage 2 1)))
 
 (defn ^:export showHistory []
-  (if (saveData)
-    (gotoPage 1 3)))
+  (let [
+        records (readLastNRecords 10)
+        countOfRecords (count records)
+       ]
+       
+  (dotimes [i countOfRecords]
+    (println (records i)))))
 
     
 (defn ^:export setDummyData []
   (let [
         startDate (js/Date. 2013 0 1 8 0 0 0)
         newDate (fn [d ctr] (js/Date. (+ (* 1000 60 60 4 ctr) (.getTime startDate))))
-        mealsCount (count meals)
-        typesCount (count types)
+        mealsCount (count consts/meals)
+        typesCount (count consts/types)
         ]
     (.clear js/localStorage)
     (dotimes [i 500]
       (let [
             dt (newDate startDate i)
-            m (nth months (js/parseInt (.getMonth dt)))
+            m (nth consts/months (js/parseInt (.getMonth dt)))
             d (.getDate dt)
             y (+ 1900 (.getYear dt))
             rand (js/Math.random)
-            f (nth meals (mod i mealsCount))
-            t (nth types (mod i typesCount))
+            f (nth consts/meals (mod i mealsCount))
+            t (nth consts/types (mod i typesCount))
             v (js/Math.round (+ 70 (* rand 100)))
             ]
         (persistRecord m d y f v t "hello")
