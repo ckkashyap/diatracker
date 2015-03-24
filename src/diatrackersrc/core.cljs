@@ -91,8 +91,10 @@
         getValFromList (fn [n]
                          (let [
                                div (.getElementById js/document n)
-                               val (.-value (aget (.-selectedOptions div) 0))
+                               idx (.-selectedIndex div)
+                               val (.-value (aget (.-options div) idx))
                                ] val))
+
 
         monthVal (getValFromList "page2MonthList")
         dayVal (getValFromList "page2DayList")
