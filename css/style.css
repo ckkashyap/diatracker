@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(white, #974); /* Standard syntax */
+  background: linear-gradient(white, #974); 
 }
 
 
@@ -7,23 +7,15 @@ div {
     border-style: solid;
     border-width: medium;
     border-color: black;
-    border-width: 0px;
+    border-width: 1px;
 }
 
 div.data {
     display:none;
 }
 
-select.reading {
-   width:90%;
-    margin:0 auto;
-    padding:10px;
-    background: #5E768D;
-    border-radius: 10px;
-    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
-}
-select.reading {
-    width:90%;
+.reading {
+    width:100%;
     margin:0 auto;
     padding:10px;
     background: #5E768D;
@@ -31,7 +23,7 @@ select.reading {
     font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
 }
 
-select.date {
+.date {
     width:90px;
     margin:0 auto;
     padding:10px;
@@ -39,35 +31,6 @@ select.date {
     border-radius: 10px;
     font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
 }
-
-input.date {
-    width:90px;
-    margin:0 auto;
-    padding:10px;
-    background: #5E768D;
-    border-radius: 10px;
-    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
-}
-
-
-input.reading {
-    width:90%;
-    margin:0 auto;
-    padding:10px;
-    background: #5E768D;
-    border-radius: 10px;
-    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
-}
-textarea.reading {
-    width:90%;
-    height:100px;
-    margin:0 auto;
-    padding:10px;
-    background: #5E768D;
-    border-radius: 10px;
-    font-family: sans-serif; font-size: 20px; color: #f2f2f2; text-shadow: 0px -1px 0px #334f71; 
-}
-
 
 button {
 

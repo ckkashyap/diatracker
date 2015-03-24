@@ -13,13 +13,24 @@
 (def meals
   [
    "Before Breakfast"
-   "Breakfast"
+   "After Breakfast"
    "Before Lunch"
-   "Lunch"
-   "Snacks"
+   "After Lunch"
+   "After Snacks"
+   "Before Snacks"
    "Before Dinner"
-   "Dinner"
+   "After Dinner"
    ])
+
+(def types 
+  [
+   "Sugar"
+   "BP"
+   "Temperature"
+   "Weight"
+   "Other"
+   ])
+
 
 
 (defn initPage [pageNumber]
@@ -41,9 +52,11 @@
           (set! (.-value yt) y)
           (println d)
           (println m (+ 1900 y) d)
-
           )
         (println "Initializing page 2"))
+    3 (do
+        (println "Initializing page 3"))
+    
     (println "Cannot initialize" pageNumber)
 ))
 
@@ -61,10 +74,10 @@
   [i]
   (.stringify js/JSON (clj->js i)))
 
-(defn persistRecord [m d y f v c]
+(defn persistRecord [m d y f v t c];month date year food value type  comment
   (let
       [ 
-       r  { :m m :d d :y y :f f :v v :c c}
+       r  { :m m :d d :y y :f f :v v :t t :c c}
        j  (clj->json r)
 
        storedMaxID (.-maxID js/localStorage)
@@ -99,16 +112,15 @@
         monthVal (getValFromList "page2MonthList")
         dayVal (getValFromList "page2DayList")
         foodVal (getValFromList "page2FoodList")
+        typeVal (getValFromList "page2TypeList")
 
 
         ]
     (set! (.-value reading) "100")
     (println foodVal monthVal dayVal)
-    (.focus reading)
-    (.select reading)
     (if (> readingIntVal 0)
       (do
-        (persistRecord monthVal dayVal yearVal foodVal readingIntVal commentsVal )
+        (persistRecord monthVal dayVal yearVal foodVal readingIntVal typeVal commentsVal )
         (println commentsVal)
         (set! (.-value reading) "100")
         (set! (.-value comments) "")      
@@ -120,25 +132,30 @@
 (defn ^:export saveDataAndSwitch []
   (if (saveData)
     (gotoPage 2 1)))
+
+(defn ^:export showHistory []
+  (if (saveData)
+    (gotoPage 1 3)))
+
     
-
-
-
 (defn ^:export setDummyData []
   (let [
         startDate (js/Date. 2013 0 1 8 0 0 0)
         newDate (fn [d ctr] (js/Date. (+ (* 1000 60 60 4 ctr) (.getTime startDate))))
+        mealsCount (count meals)
+        typesCount (count types)
         ]
     (.clear js/localStorage)
-    (dotimes [i 2000]
+    (dotimes [i 500]
       (let [
             dt (newDate startDate i)
             m (nth months (js/parseInt (.getMonth dt)))
             d (.getDate dt)
             y (+ 1900 (.getYear dt))
             rand (js/Math.random)
-            f (nth meals (mod i 7))
+            f (nth meals (mod i mealsCount))
+            t (nth types (mod i typesCount))
             v (js/Math.round (+ 70 (* rand 100)))
             ]
-        (persistRecord m d y f v "hello")
+        (persistRecord m d y f v t "hello")
       ))))
