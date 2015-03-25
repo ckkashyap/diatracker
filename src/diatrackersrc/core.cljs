@@ -3,6 +3,7 @@
    [diatrackersrc.consts :as consts]
   ))
 
+
 (enable-console-print!)
 
 (declare showHistory)
@@ -55,9 +56,9 @@
        r  { :m m :d d :y y :f f :v v :t t :c c}
        j  (clj->json r)
 
-       storedMaxID (.-maxID js/localStorage)
+       storedMaxID (.getItem  js/localStorage "maxID")
        maxID (js/parseInt (if storedMaxID storedMaxID "0"))
-       _ (set! (.-maxID js/localStorage) (+ 1 maxID))
+       _  (.setItem js/localStorage "maxID" (+ 1 maxID))
        key (str "reading" maxID)
 
        _ (.setItem js/localStorage key j)
@@ -68,7 +69,7 @@
 (defn readLastNRecords [n]
   (let
       [
-       storedMaxID (.-maxID js/localStorage)
+       storedMaxID (.getItem  js/localStorage "maxID")
        startID (- storedMaxID 1)
        ]
   (loop [i n id startID v []]

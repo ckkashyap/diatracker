@@ -12,3 +12,9 @@ localStorage.maxID = "";
 localStorage.setItem = function(k,v){
 }
 
+localStorage.getItem = function(k){
+}
+
+localStorage.clear = function() {
+}
+
