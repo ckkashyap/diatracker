@@ -72,7 +72,7 @@ div.fullscreen {
 }
 
 
-div.fullpageVisible {
+div.fullPageVisible {
     position: relative;
     float:top;
     width: 90%;
@@ -93,7 +93,7 @@ div.fullpageVisible {
 
 }
 
-div.fullpageInvisible {
+div.fullPageInvisible {
     display:none;
 
 /*    transform: translateY(-2000px) translateZ(0);
