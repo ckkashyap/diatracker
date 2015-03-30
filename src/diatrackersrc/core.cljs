@@ -1,12 +1,15 @@
 (ns diatrackersrc.core
   (:require
    [diatrackersrc.consts :as consts]
+   [diatrackersrc.dom :as dom]
   ))
+
 
 
 (enable-console-print!)
 
 (declare showHistory)
+(declare dingo)
 
 (defn initPage [pageNumber]
   (case pageNumber
@@ -18,9 +21,9 @@
               m (.getMonth dt)
               y (+ 1900 (.getYear dt))
               d (- (.getDate dt) 1)
-              ml (.getElementById js/document "page2MonthList")
-              dl (.getElementById js/document "page2DayList")
-              yt (.getElementById js/document "page2Year")
+              ml (dom/getElementById "page2MonthList")
+              dl (dom/getElementById "page2DayList")
+              yt (dom/getElementById "page2Year")
               ]
           (set! (.-selectedIndex ml) m)
           (set! (.-selectedIndex dl) d)
@@ -121,6 +124,7 @@
         (set! (.-value comments) "")      
         true)
       (do
+        (dingo)
         (js/alert "Please enter a valid value")
         false))))
 
@@ -159,3 +163,11 @@
             ]
         (persistRecord m d y f v t "hello")
       ))))
+
+(defn dingo []
+  (let [
+        d (dom/getElementById "page2FoodList")
+        e (.createElement js/document "option")
+        _ (set! (.-text e) "AAA")
+        _ (.add (.-options d) e)
+        ] (println "hello")))
