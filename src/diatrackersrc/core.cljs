@@ -2,14 +2,16 @@
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
+   [diatrackersrc.storage :as store]
+   [diatrackersrc.page2 :as page2]
   ))
+
 
 
 
 (enable-console-print!)
 
 (declare showHistory)
-(declare dingo)
 
 (defn initPage [pageNumber]
   (case pageNumber
@@ -53,27 +55,13 @@
   [i]
   (.stringify js/JSON (clj->js i)))
 
-(defn persistRecord [m d y f v t c];month date year food value type  comment
-  (let
-      [ 
-       r  { :m m :d d :y y :f f :v v :t t :c c}
-       j  (clj->json r)
-
-       storedMaxID (.getItem  js/localStorage "maxID")
-       maxID (js/parseInt (if storedMaxID storedMaxID "0"))
-       _  (.setItem js/localStorage "maxID" (+ 1 maxID))
-       key (str "reading" maxID)
-
-       _ (.setItem js/localStorage key j)
-       
-       ]
-    (println maxID)))
 
 (defn readLastNRecords [n]
   (let
       [
        storedMaxID (.getItem  js/localStorage "maxID")
        startID (- storedMaxID 1)
+       _ (println startID)
        ]
   (loop [i n id startID v []]
     (if (or (= i 0) (< id 0))
@@ -87,49 +75,8 @@
         
         (recur (dec i) (dec id) (conj v val)))))))
   
-
-(defn ^:export saveData []
-  (let [
-        reading (.getElementById js/document "page2Reading")
-        readingVal (.-value reading)
-        readingParseInt (js/parseInt readingVal)
-        readingIntVal (if (js/isNaN readingParseInt) 0 readingParseInt)
-        comments (.getElementById js/document "page2Comments")
-        commentsVal (.-value comments)
-        year (.getElementById js/document "page2Year")
-        yearVal (.-value year)
-        
-        getValFromList (fn [n]
-                         (let [
-                               div (.getElementById js/document n)
-                               idx (.-selectedIndex div)
-                               val (.-value (aget (.-options div) idx))
-                               ] val))
-
-
-        monthVal (getValFromList "page2MonthList")
-        dayVal (getValFromList "page2DayList")
-        foodVal (getValFromList "page2FoodList")
-        typeVal (getValFromList "page2TypeList")
-
-
-        ]
-    (set! (.-value reading) "100")
-    (println foodVal monthVal dayVal)
-    (if (> readingIntVal 0)
-      (do
-        (persistRecord monthVal dayVal yearVal foodVal readingIntVal typeVal commentsVal )
-        (println commentsVal)
-        (set! (.-value reading) "100")
-        (set! (.-value comments) "")      
-        true)
-      (do
-        (dingo)
-        (js/alert "Please enter a valid value")
-        false))))
-
 (defn ^:export saveDataAndSwitch []
-  (if (saveData)
+  (if (page2/saveData)
     (gotoPage 2 1)))
 
 (defn ^:export showHistory []
@@ -149,7 +96,7 @@
         mealsCount (count consts/meals)
         typesCount (count consts/types)
         ]
-    (.clear js/localStorage)
+    (store/clear)
     (dotimes [i 500]
       (let [
             dt (newDate startDate i)
@@ -161,13 +108,6 @@
             t (nth consts/types (mod i typesCount))
             v (js/Math.round (+ 70 (* rand 100)))
             ]
-        (persistRecord m d y f v t "hello")
+        (page2/persistRecord m d y f v t "hello")
       ))))
 
-(defn dingo []
-  (let [
-        d (dom/getElementById "page2FoodList")
-        e (.createElement js/document "option")
-        _ (set! (.-text e) "AAA")
-        _ (.add (.-options d) e)
-        ] (println "hello")))

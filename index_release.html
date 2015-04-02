@@ -27,6 +27,11 @@
 	  </button>
 	</div>
 	<div class="horizontalList">
+	  <button class="bigButton" onclick="diatrackersrc.core.gotoPage(1, 4)">
+	    Settings
+	  </button>
+	</div>
+	<div class="horizontalList">
 	  <button class="bigButton" onclick="diatrackersrc.core.setDummyData()">
 	    DummyData
 	  </button>
@@ -92,25 +97,13 @@
 	</div>
 	<div class="horizontalList">
 	  <select id="page2FoodList" class="reading">
-	    <option>Before Breakfast</option>
-	    <option>After Breakfast</option>
-	    <option>Before Lunch</option>
-	    <option>After Lunch</option>
-	    <option>Before Dinner</option>
-	    <option>After Dinner</option>
-	    <option>Before Snacks</option>
-	    <option>After Snacks</option>
+	    <option>DUMMY</option>
 	  </select>
 	</div>
 	<div class="horizontalList">
 	  <select id="page2TypeList" class="reading">
-	    <option>Sugar</option>
-	    <option>BP</option>
-	    <option>Temperature</option>
-	    <option>Weight</option>
-	    <option>Other</option>
+	    <option>DUMMY</option>
 	  </select>
-
 	</div>
 
 	<div class="horizontalList">
@@ -124,7 +117,7 @@
 	  <button class="bigButton" onclick="diatrackersrc.core.saveDataAndSwitch()">
 	    save
 	  </button>
-	  <button class="bigButton" onclick="diatrackersrc.core.saveData()">
+	  <button class="bigButton" onclick="diatrackersrc.page2.saveData()">
 	    Add another
 	  </button>
 
@@ -140,6 +133,13 @@
          </ul>
        </div>
       </div>
+
+      <div id="page4" class="fullPageInvisible">
+       <button class="bigButton" onclick="diatrackersrc.core.gotoPage(4, 1)">
+         Back
+       </button>
+      </div>
+
 
     </div>
 
