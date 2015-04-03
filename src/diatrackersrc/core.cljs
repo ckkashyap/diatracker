@@ -88,6 +88,20 @@
   (dotimes [i countOfRecords]
     (println (records i)))))
 
+
+    
+(defn ^:export locationChanged [e]
+  (let [
+        url (.-href js/location)
+        re (js/RegExp. ".*#from([0-9]+)to([0-9]+)$" "i")
+        m (.exec re url)
+        from (if m (aget m 1) 0)
+        to (if m (aget m 2) 0)
+        ]
+    (if (> from 0)
+      (gotoPage from to))
+
+    (println url)))
     
 (defn ^:export setDummyData []
   (let [
