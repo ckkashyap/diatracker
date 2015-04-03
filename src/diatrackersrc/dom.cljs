@@ -27,3 +27,17 @@
               el (.-value (aget (.-options sl) i))
               ]
           (recur (inc i) (conj o el)))))))
+
+
+
+(defn getCurrentPageNumber []
+  (let [
+        pd (getElementById "pageNumber")
+        v (.-innerHTML pd)
+        ] v))
+
+
+(defn setCurrentPageNumber [n]
+  (let [
+        pd (getElementById "pageNumber")
+        ] (set! (.-innerHTML pd) n)))
