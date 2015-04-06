@@ -15,9 +15,11 @@
 
 (defn initPage [pageNumber]
   (case pageNumber
-    1 (do
+    "page1" (do
+        (set! (.-href js/location) "#page1")
         (println "Initializing page 1"))
-    2 (do
+    "page2" (do
+              (set! (.-href js/location) "#page2")
         (let [
               dt (js/Date.)
               m (.getMonth dt)
@@ -34,17 +36,26 @@
           (println m (+ 1900 y) d)
           )
         (println "Initializing page 2"))
-    3 (do
+    "page3" (do
+              (set! (.-href js/location) "#page3")
         (showHistory)
         (println "Initializing page 3"))
+
+    "page4" (do
+              (set! (.-href js/location) "#page4")
+        (showHistory)
+        (println "Initializing page 4"))
+
     
     (println "Cannot initialize" pageNumber)
 ))
 
 (defn ^:export gotoPage [from, to]
   (let [
-        fromDiv (.getElementById js/document (str "page" from))
-        toDiv (.getElementById js/document (str "page" to))
+        _ (println from)
+        _ (println to)
+        fromDiv (.getElementById js/document from)
+        toDiv (.getElementById js/document to)
         ]
       (set! (.-className fromDiv) "fullPageInvisible")
       (set! (.-className toDiv) "fullPageVisible")
@@ -78,7 +89,7 @@
   
 (defn ^:export saveDataAndSwitch []
   (if (page2/saveData)
-    (gotoPage 2 1)))
+    (gotoPage "page2" "page1")))
 
 (defn ^:export showHistory []
   (let [
@@ -94,7 +105,7 @@
 (defn ^:export locationChanged [e]
   (let [
         url (.-href js/location)
-        re (js/RegExp. ".*#([0-9]+)$" "i")
+        re (js/RegExp. ".*#(.+)$" "i")
         m (.exec re url)
         from (dom/getCurrentPageNumber)
         to (if m (aget m 1) 1)

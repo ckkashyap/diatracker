@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <div class="data" id="pageNumber">1</div>
+    <div class="data" id="pageNumber">page1</div>
     <div class="fullscreen">
       <div id="page1" class="fullPageVisible">
 	<div class="horizontalList">
@@ -22,13 +22,13 @@
 	</div>
 
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="diatrackersrc.core.gotoPage(1, 2)">
+	  <button class="bigButton" onclick="location.href='#page2'">
 	    + Add
 	  </button>
 	</div>
 	<div class="horizontalList">
 	  <!--button class="bigButton" onclick="diatrackersrc.core.gotoPage(1, 4)"-->
-	  <button class="bigButton" onclick="location.href='#4'">
+	  <button class="bigButton" onclick="location.href='#page4'">
 	    Settings
 	  </button>
 	</div>
@@ -126,7 +126,7 @@
       </div>
 
       <div id="page3" class="fullPageInvisible">
-       <button class="bigButton" onclick="diatrackersrc.core.gotoPage(3, 1)">
+       <button class="bigButton" onclick="location.href='#page1'">
          Back
        </button>
        <div class="listView">
@@ -136,7 +136,7 @@
       </div>
 
       <div id="page4" class="fullPageInvisible">
-       <button class="bigButton" onclick="location.href='#'">
+       <button class="bigButton" onclick="location.href='#page1'">
          Back
        </button>
       </div>
