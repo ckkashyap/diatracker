@@ -28,7 +28,7 @@
 	</div>
 	<div class="horizontalList">
 	  <!--button class="bigButton" onclick="diatrackersrc.core.gotoPage(1, 4)"-->
-	  <button class="bigButton" onclick="location.href='#page4'">
+	  <button class="bigButton" onclick="location.href='#settingsPage'">
 	    Settings
 	  </button>
 	</div>
@@ -135,11 +135,59 @@
        </div>
       </div>
 
-      <div id="page4" class="fullPageInvisible">
-       <button class="bigButton" onclick="location.href='#page1'">
-         Back
-       </button>
+      <div id="settingsPage" class="fullPageInvisible">
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#readingType'">
+            Reading Type
+	  </button>
+	</div>
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#timeMarker'">
+            Time Marker
+	  </button>
+	</div>
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#page1'">
+            Back
+	  </button>
+	</div>
       </div>
+
+
+      <div id="readingType" class="fullPageInvisible">
+	<div class="horizontalList">
+	  <select id="readingTypeList" class="reading">
+	  </select>
+	</div>
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#page1'">
+            Delete existing
+	  </button>
+	</div>
+	<div class="horizontalList">
+	  <input id="readingTypeNew" class="reading" placeholder="Enter new type"/>
+	</div>
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="diatrackersrc.newreadingtype.addNewType()">
+            Add
+	  </button>
+	</div>
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#page1'">
+            Back
+	  </button>
+	</div>
+      </div>
+
+      <div id="timeMarker" class="fullPageInvisible">
+	<div class="horizontalList">
+	  <button class="bigButton" onclick="location.href='#page1'">
+            Back
+	  </button>
+	</div>
+      </div>
+
+
 
 
     </div>

@@ -30,3 +30,23 @@
        ]
     (println maxID)))
 
+
+(defn readLastNRecords [n]
+  (let
+      [
+       storedMaxID (.getItem  js/localStorage "maxID")
+       startID (- storedMaxID 1)
+       _ (println startID)
+       ]
+  (loop [i n id startID v []]
+    (if (or (= i 0) (< id 0))
+      (do
+        (println v)
+        v)
+      (let [
+            key (str "reading" id)
+            val (js->clj (js/JSON.parse (.getItem js/localStorage key)))
+            ]
+        
+        (recur (dec i) (dec id) (conj v val)))))))
+  
