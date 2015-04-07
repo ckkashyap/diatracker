@@ -7,7 +7,7 @@
   ))
 
 
-(def html (str
+(defn html [timeList typeList] (str
 "	<div class=\"horizontalList\">"
 "	  <div>"
 "	    <select id=\"adddataMonthList\" class=\"date\">"
@@ -16,7 +16,7 @@
 "	  </div>"
 "	  <div>"
 "	    <select id=\"adddataDayList\" class=\"date\">"
-(string/join (map #(str "<option>" (if (< % 10) (str "0" %)  %) "</option>") (rest (range 10))))
+(string/join (map #(str "<option>" (if (< % 10) (str "0" %)  %) "</option>") (range 1 31)))
 "	    </select>"
 "	  </div>"
 "	  <div>"
@@ -25,12 +25,12 @@
 "	</div>"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"adddataFoodList\" class=\"reading\">"
-"	    <option>DUMMY</option>"
+(string/join (map #(str "<option>" % "</option>") timeList))
 "	  </select>"
 "	</div>"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"adddataTypeList\" class=\"reading\">"
-"	    <option>DUMMY</option>"
+(string/join (map #(str "<option>" % "</option>") typeList))
 "	  </select>"
 "	</div>"
 ""
@@ -56,7 +56,7 @@
 (do
   (set! (.-href js/location) "#adddata")
   (let [
-        _ (set! (.-innerHTML (dom/getElementById "adddata")) html)
+        _ (set! (.-innerHTML (dom/getElementById "adddata")) (html ["A"] ["B"]))
         dt (js/Date.)
         m (.getMonth dt)
         y (+ 1900 (.getYear dt))

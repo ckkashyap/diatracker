@@ -46,11 +46,15 @@
   (let [
         _ (println from)
         _ (println to)
-        fromDiv (.getElementById js/document from)
-        toDiv (.getElementById js/document to)
+        fromDiv (dom/getElementById from)
+        toDiv (dom/getElementById to)
         ]
+
       (set! (.-className fromDiv) "fullPageInvisible")
+      (println "HRER" toDiv)
       (set! (.-className toDiv) "fullPageVisible")
+
+
       (initPage to)
       (dom/setCurrentPageNumber to)
 ))
