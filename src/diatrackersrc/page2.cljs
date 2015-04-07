@@ -5,29 +5,6 @@
    [diatrackersrc.storage :as store]
   ))
 
-(defn clj->json
-  [i]
-  (.stringify js/JSON (clj->js i)))
-
-
-
-(defn persistRecord [m d y f v t c];month date year food value type  comment
-  (let
-      [ 
-       r  { :m m :d d :y y :f f :v v :t t :c c}
-       j  (clj->json r)
-
-       storedMaxID (.getItem  js/localStorage "maxID")
-       maxID (js/parseInt (if storedMaxID storedMaxID "0"))
-       _  (.setItem js/localStorage "maxID" (+ 1 maxID))
-       key (str "reading" maxID)
-
-       _ (.setItem js/localStorage key j)
-       
-       ]
-    (println maxID)))
-
-
 
 (defn ^:export saveData []
   (let [
@@ -59,7 +36,7 @@
     (println foodVal monthVal dayVal)
     (if (> readingIntVal 0)
       (do
-        (persistRecord monthVal dayVal yearVal foodVal readingIntVal typeVal commentsVal )
+        (store/persistRecord monthVal dayVal yearVal foodVal readingIntVal typeVal commentsVal )
         (println commentsVal)
         (set! (.-value reading) "100")
         (set! (.-value comments) "")      

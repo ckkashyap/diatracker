@@ -1,8 +1,23 @@
 (ns diatrackersrc.navigate
   (:require
-   [diatrackersrc.consts :as consts]
+   [diatrackersrc.consts :as cnst]
    [diatrackersrc.dom :as dom]
+   [diatrackersrc.storage :as store]
+
   ))
+
+(defn ^:export showHistory []
+  (let [
+        records (store/readLastNRecords cnst/dataRecord 10)
+        countOfRecords (count records)
+       ]
+       
+  (dotimes [i countOfRecords]
+    (println (records i)))))
+
+
+    
+
 
 (defn initPage [pageNumber]
   (case pageNumber
@@ -27,18 +42,19 @@
           (println m (+ 1900 y) d)
           )
         (println "Initializing page 2"))
+
     "page3" (do
               (set! (.-href js/location) "#page3")
         (showHistory)
         (println "Initializing page 3"))
 
-    "page4" (do
-              (set! (.-href js/location) "#page4")
-        (showHistory)
-        (println "Initializing page 4"))
+    "readingType" (do
+              (set! (.-href js/location) "#readingType")
+              (diatrackersrc.newreadingtype/initpage)
+        (println "Initializing page readingType"))
 
     
-    (println "Cannot initialize" pageNumber)
+    (println "Cannot initialize " pageNumber)
 ))
 
 (defn ^:export gotoPage [from, to]
@@ -54,3 +70,16 @@
       (dom/setCurrentPageNumber to)
 ))
 
+
+
+(defn ^:export locationChanged [e]
+  (let [
+        url (.-href js/location)
+        re (js/RegExp. ".*#(.+)$" "i")
+        m (.exec re url)
+        from (dom/getCurrentPageNumber)
+        to (if m (aget m 1) "page1")
+        ]
+    (gotoPage from to)
+    (println url)))
+    

@@ -32,5 +32,7 @@
 
 
 
-
+(def dataRecord {:max "recordMaxID" :prefix "record"})
+(def recordType {:max "recordTypeMaxID" :prefix "type"})
+(def timeOfDay {:max "timeOfDayMaxID" :prefix "time"})
 

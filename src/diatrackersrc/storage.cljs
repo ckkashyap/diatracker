@@ -1,4 +1,6 @@
-(ns diatrackersrc.storage)
+(ns diatrackersrc.storage
+  (:require
+   [diatrackersrc.consts :as cnst]))
 
 (defn getItem [k]
   (.getItem  js/localStorage k))
@@ -19,11 +21,10 @@
       [ 
        r  { :m m :d d :y y :f f :v v :t t :c c}
        j  (clj->json r)
-
-       storedMaxID (getItem "maxID")
+       storedMaxID (getItem (:max cnst/dataRecord))
        maxID (js/parseInt (if storedMaxID storedMaxID "0"))
-       _  (setItem "maxID" (+ 1 maxID))
-       key (str "reading" maxID)
+       _  (setItem (:max cnst/dataRecord) (+ 1 maxID))
+       key (str (:prefix cnst/dataRecord) maxID)
 
        _ (setItem key j)
        
@@ -31,10 +32,11 @@
     (println maxID)))
 
 
-(defn readLastNRecords [n]
+(defn readLastNRecords [r n]
   (let
       [
-       storedMaxID (.getItem  js/localStorage "maxID")
+       storedMaxID (getItem (:max r))
+       _ (println (:max r))
        startID (- storedMaxID 1)
        _ (println startID)
        ]
@@ -44,7 +46,7 @@
         (println v)
         v)
       (let [
-            key (str "reading" id)
+            key (str (:prefix r) id)
             val (js->clj (js/JSON.parse (.getItem js/localStorage key)))
             ]
         

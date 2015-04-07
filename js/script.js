@@ -5,6 +5,6 @@ function dingo() {
 
 
 window.onhashchange = function(e) {
-  diatrackersrc.core.locationChanged(e);
+  diatrackersrc.navigate.locationChanged(e);
   return '';
 };

@@ -8,6 +8,9 @@
 
 
 
+(defn initpage []
+  (println "init reading page"))
+
 (defn ^:export addNewType []
   (let [
         storedMaxID (store/getItem "typeMaxID")
