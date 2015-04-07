@@ -1,4 +1,4 @@
-(ns diatrackersrc.page2
+(ns diatrackersrc.adddata
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
@@ -8,13 +8,13 @@
 
 (defn ^:export saveData []
   (let [
-        reading (.getElementById js/document "page2Reading")
+        reading (.getElementById js/document "adddataReading")
         readingVal (.-value reading)
         readingParseInt (js/parseInt readingVal)
         readingIntVal (if (js/isNaN readingParseInt) 0 readingParseInt)
-        comments (.getElementById js/document "page2Comments")
+        comments (.getElementById js/document "adddataComments")
         commentsVal (.-value comments)
-        year (.getElementById js/document "page2Year")
+        year (.getElementById js/document "adddataYear")
         yearVal (.-value year)
 
         getValFromList (fn [n]
@@ -25,10 +25,10 @@
                                ] val))
 
 
-        monthVal (getValFromList "page2MonthList")
-        dayVal (getValFromList "page2DayList")
-        foodVal (getValFromList "page2FoodList")
-        typeVal (getValFromList "page2TypeList")
+        monthVal (getValFromList "adddataMonthList")
+        dayVal (getValFromList "adddataDayList")
+        foodVal (getValFromList "adddataFoodList")
+        typeVal (getValFromList "adddataTypeList")
 
 
         ]
@@ -43,9 +43,9 @@
         true)
       (do
         ;REMOVE
-        (dom/getListItems "page2FoodList")
-        (dom/addListItem "page2FoodList" "hello world")
-        (dom/getListItems "page2FoodList")
+        (dom/getListItems "adddataFoodList")
+        (dom/addListItem "adddataFoodList" "hello world")
+        (dom/getListItems "adddataFoodList")
         ;ENDREMOVE
         (js/alert "Please enter a valid value")
         false))))

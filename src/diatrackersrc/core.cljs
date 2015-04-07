@@ -3,7 +3,7 @@
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
    [diatrackersrc.storage :as store]
-   [diatrackersrc.page2 :as page2]
+   [diatrackersrc.adddata :as adddata]
    [diatrackersrc.navigate :as navigate]
    [diatrackersrc.newreadingtype :as newReadingType]
   ))
@@ -11,8 +11,8 @@
 (enable-console-print!)
 
 (defn ^:export saveDataAndSwitch []
-  (if (page2/saveData)
-    (navigate/gotoPage "page2" "page1")))
+  (if (adddata/saveData)
+    (navigate/gotoPage "adddata" "main")))
 
 (defn ^:export setDummyData []
   (let [
@@ -38,4 +38,4 @@
 
 
 
-(navigate/gotoPage "page1" "page1")
+(navigate/gotoPage "main" "main")

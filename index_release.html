@@ -6,9 +6,9 @@
   </head>
 
   <body>
-    <div class="data" id="pageNumber">page1</div>
+    <div class="data" id="pageNumber">main</div>
     <div class="fullscreen">
-      <div id="page1" class="fullPageVisible">
+      <div id="main" class="fullPageVisible">
 	<div class="horizontalList">
 	  <button onclick="diatrackersrc.core.showReports()">
 	    Reports
@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="location.href='#page2'">
+	  <button class="bigButton" onclick="location.href='#adddata'">
 	    + Add
 	  </button>
 	</div>
@@ -39,10 +39,10 @@
 	</div>
       </div>
       
-      <div id="page2" class="fullPageInvisible">
+      <div id="adddata" class="fullPageInvisible">
 	<div class="horizontalList">
 	  <div>
-	    <select id="page2MonthList" class="date">
+	    <select id="adddataMonthList" class="date">
 	      <option>Jan</option>
 	      <option>Feb</option>
 	      <option>Mar</option>
@@ -58,7 +58,7 @@
 	    </select>
 	  </div>
 	  <div>
-	    <select id="page2DayList" class="date">
+	    <select id="adddataDayList" class="date">
 	      <option>01</option>
 	      <option>02</option>
 	      <option>03</option>
@@ -93,32 +93,32 @@
 	    </select>
 	  </div>
 	  <div>
-	    <input id="page2Year" type="text" class="date">
+	    <input id="adddataYear" type="text" class="date">
 	  </div>
 	</div>
 	<div class="horizontalList">
-	  <select id="page2FoodList" class="reading">
+	  <select id="adddataFoodList" class="reading">
 	    <option>DUMMY</option>
 	  </select>
 	</div>
 	<div class="horizontalList">
-	  <select id="page2TypeList" class="reading">
+	  <select id="adddataTypeList" class="reading">
 	    <option>DUMMY</option>
 	  </select>
 	</div>
 
 	<div class="horizontalList">
-	  <input id="page2Reading" type="number" class="reading" value="100" placeholder="Enter reading"/>
+	  <input id="adddataReading" type="number" class="reading" value="100" placeholder="Enter reading"/>
 	</div>
 	<div class="horizontalList">
-	  <textarea id="page2Comments" class="reading" placeholder="Enter comments here"></textarea>
+	  <textarea id="adddataComments" class="reading" placeholder="Enter comments here"></textarea>
 	</div>
 
 	<div class="horizontalList">
 	  <button class="bigButton" onclick="diatrackersrc.core.saveDataAndSwitch()">
 	    save
 	  </button>
-	  <button class="bigButton" onclick="diatrackersrc.page2.saveData()">
+	  <button class="bigButton" onclick="diatrackersrc.adddata.saveData()">
 	    Add another
 	  </button>
 
@@ -126,7 +126,7 @@
       </div>
 
       <div id="page3" class="fullPageInvisible">
-       <button class="bigButton" onclick="location.href='#page1'">
+       <button class="bigButton" onclick="location.href='#main'">
          Back
        </button>
        <div class="listView">
@@ -147,7 +147,7 @@
 	  </button>
 	</div>
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="location.href='#page1'">
+	  <button class="bigButton" onclick="location.href='#main'">
             Back
 	  </button>
 	</div>
@@ -160,7 +160,7 @@
 	  </select>
 	</div>
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="location.href='#page1'">
+	  <button class="bigButton" onclick="location.href='#main'">
             Delete existing
 	  </button>
 	</div>
@@ -173,7 +173,7 @@
 	  </button>
 	</div>
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="location.href='#page1'">
+	  <button class="bigButton" onclick="location.href='#main'">
             Back
 	  </button>
 	</div>
@@ -181,7 +181,7 @@
 
       <div id="timeMarker" class="fullPageInvisible">
 	<div class="horizontalList">
-	  <button class="bigButton" onclick="location.href='#page1'">
+	  <button class="bigButton" onclick="location.href='#main'">
             Back
 	  </button>
 	</div>

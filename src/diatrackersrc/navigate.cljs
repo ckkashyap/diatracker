@@ -21,19 +21,19 @@
 
 (defn initPage [pageNumber]
   (case pageNumber
-    "page1" (do
-        (set! (.-href js/location) "#page1")
+    "main" (do
+        (set! (.-href js/location) "#main")
         (println "Initializing page 1"))
-    "page2" (do
-              (set! (.-href js/location) "#page2")
+    "adddata" (do
+              (set! (.-href js/location) "#adddata")
         (let [
               dt (js/Date.)
               m (.getMonth dt)
               y (+ 1900 (.getYear dt))
               d (- (.getDate dt) 1)
-              ml (dom/getElementById "page2MonthList")
-              dl (dom/getElementById "page2DayList")
-              yt (dom/getElementById "page2Year")
+              ml (dom/getElementById "adddataMonthList")
+              dl (dom/getElementById "adddataDayList")
+              yt (dom/getElementById "adddataYear")
               ]
           (set! (.-selectedIndex ml) m)
           (set! (.-selectedIndex dl) d)
@@ -78,7 +78,7 @@
         re (js/RegExp. ".*#(.+)$" "i")
         m (.exec re url)
         from (dom/getCurrentPageNumber)
-        to (if m (aget m 1) "page1")
+        to (if m (aget m 1) "main")
         ]
     (gotoPage from to)
     (println url)))
