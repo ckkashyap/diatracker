@@ -2,6 +2,7 @@
   (:require
    [diatrackersrc.consts :as cnst]
    [diatrackersrc.dom :as dom]
+   [diatrackersrc.adddata :as adddata]
    [diatrackersrc.storage :as store]
 
   ))
@@ -24,24 +25,8 @@
     "main" (do
         (set! (.-href js/location) "#main")
         (println "Initializing page 1"))
-    "adddata" (do
-              (set! (.-href js/location) "#adddata")
-        (let [
-              dt (js/Date.)
-              m (.getMonth dt)
-              y (+ 1900 (.getYear dt))
-              d (- (.getDate dt) 1)
-              ml (dom/getElementById "adddataMonthList")
-              dl (dom/getElementById "adddataDayList")
-              yt (dom/getElementById "adddataYear")
-              ]
-          (set! (.-selectedIndex ml) m)
-          (set! (.-selectedIndex dl) d)
-          (set! (.-value yt) y)
-          (println d)
-          (println m (+ 1900 y) d)
-          )
-        (println "Initializing page 2"))
+
+    "adddata" (adddata/initPage)
 
     "page3" (do
               (set! (.-href js/location) "#page3")
