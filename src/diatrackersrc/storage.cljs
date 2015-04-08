@@ -20,6 +20,9 @@
   (getItem (str table "MaxID")))
   
 
+(defn delete [table recordID]
+  (setItem (str table :delted recordID) true))
+
 (defn insert [table record]
   (let [
         maxIDKey (str table "MaxID")
@@ -61,4 +64,19 @@
         (println v)
         v)
         (recur (dec i) (dec id) (conj v (fetchRecord table id r)))))))
+  
+
+;(defn fetchAll [table r]
+;  (let
+;      [
+;       maxID (getMaxID table)
+;       _ (println "Max ID " maxID)
+;       startID (- maxID 1)
+;       ]
+;  (loop [id startID v []]
+;    (if (or (= i 0) (< id 0))
+;      (do
+;        (println v)
+;        v)
+;        (recur (dec i) (dec id) (conj v (fetchRecord table id r)))))))
   
