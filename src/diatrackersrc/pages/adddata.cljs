@@ -1,4 +1,4 @@
-(ns diatrackersrc.adddata
+(ns diatrackersrc.pages.adddata
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
@@ -8,6 +8,7 @@
 
 
 (defn html [timeList typeList] (str
+"        <div id=\"main\" class=\"fullPageVisible\">"
 "	<div class=\"horizontalList\">"
 "	  <div>"
 "	    <select id=\"adddataMonthList\" class=\"date\">"
@@ -48,6 +49,7 @@
 "	  <button class=\"bigButton\" onclick=\"diatrackersrc.adddata.saveData()\">"
 "	    Add another"
 "	  </button>"
+"	</div>"
 "	</div>"))
 
 
@@ -56,7 +58,7 @@
 (do
   (set! (.-href js/location) "#adddata")
   (let [
-        _ (set! (.-innerHTML (dom/getElementById "adddata")) (html ["A"] ["B"]))
+        _ (set! (.-innerHTML (dom/getElementById "fullscreen")) (html ["A"] ["B"]))
         dt (js/Date.)
         m (.getMonth dt)
         y (+ 1900 (.getYear dt))

@@ -2,7 +2,8 @@
   (:require
    [diatrackersrc.consts :as cnst]
    [diatrackersrc.dom :as dom]
-   [diatrackersrc.adddata :as adddata]
+   [diatrackersrc.pages.adddata :as adddata]
+   [diatrackersrc.pages.mainpage :as mainpage]
    [diatrackersrc.storage :as store]
 
   ))
@@ -24,7 +25,7 @@
   (case pageNumber
     "main" (do
         (set! (.-href js/location) "#main")
-        (println "Initializing page 1"))
+        (mainpage/initPage))
 
     "adddata" (adddata/initPage)
 
@@ -43,21 +44,8 @@
 ))
 
 (defn ^:export gotoPage [from, to]
-  (let [
-        _ (println from)
-        _ (println to)
-        fromDiv (dom/getElementById from)
-        toDiv (dom/getElementById to)
-        ]
-
-      (set! (.-className fromDiv) "fullPageInvisible")
-      (println "HRER" toDiv)
-      (set! (.-className toDiv) "fullPageVisible")
-
-
-      (initPage to)
-      (dom/setCurrentPageNumber to)
-))
+  (initPage to)
+  (dom/setCurrentPageNumber to))
 
 
 

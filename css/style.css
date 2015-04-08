@@ -7,7 +7,7 @@ div {
     border-style: solid;
     border-width: medium;
     border-color: black;
-    border-width: 1px;
+    border-width: 0px;
 }
 
 div.data {
@@ -24,7 +24,7 @@ div.data {
 }
 
 .date {
-    width:90px;
+    width:80px;
     margin:0 auto;
     padding:10px;
     background: #5E768D;
@@ -67,7 +67,7 @@ button:active {
 
 
 div.fullscreen {
-    height: 90vh;
+    height: 100vh;
     margin-top: 10vh;
 }
 

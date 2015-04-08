@@ -3,7 +3,7 @@
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
    [diatrackersrc.storage :as store]
-   [diatrackersrc.adddata :as adddata]
+   [diatrackersrc.pages.adddata :as adddata]
    [diatrackersrc.navigate :as navigate]
    [diatrackersrc.newreadingtype :as newReadingType]
   ))
