@@ -1,4 +1,4 @@
-(ns diatrackersrc.pages.mainpage
+(ns diatrackersrc.pages.main
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]

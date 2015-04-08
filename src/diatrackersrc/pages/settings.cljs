@@ -1,4 +1,4 @@
-(ns diatrackersrc.settingspage
+(ns diatrackersrc.settings
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]

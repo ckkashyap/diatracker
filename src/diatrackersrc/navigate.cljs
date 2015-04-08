@@ -3,7 +3,7 @@
    [diatrackersrc.consts :as cnst]
    [diatrackersrc.dom :as dom]
    [diatrackersrc.pages.adddata :as adddata]
-   [diatrackersrc.pages.mainpage :as mainpage]
+   [diatrackersrc.pages.main :as main]
    [diatrackersrc.storage :as store]
 
   ))
@@ -25,7 +25,7 @@
   (case pageNumber
     "main" (do
         (set! (.-href js/location) "#main")
-        (mainpage/initPage))
+        (main/initPage))
 
     "adddata" (adddata/initPage)
 
