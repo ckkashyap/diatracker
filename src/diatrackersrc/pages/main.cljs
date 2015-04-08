@@ -26,7 +26,7 @@
 "	  </button>"
 "	</div>"
 "	<div class=\"horizontalList\">"
-"	  <button class=\"bigButton\" onclick=\"location.href='#settingsPage'\">"
+"	  <button class=\"bigButton\" onclick=\"location.href='#settings'\">"
 "	    Settings"
 "	  </button>"
 "	</div>"

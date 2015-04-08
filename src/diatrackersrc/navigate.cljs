@@ -3,6 +3,7 @@
    [diatrackersrc.consts :as cnst]
    [diatrackersrc.dom :as dom]
    [diatrackersrc.pages.adddata :as adddata]
+   [diatrackersrc.pages.settings :as settings]
    [diatrackersrc.pages.main :as main]
    [diatrackersrc.storage :as store]
 
@@ -28,6 +29,10 @@
         (main/initPage))
 
     "adddata" (adddata/initPage)
+
+    "settings" (settings/initPage "settings")
+    "settingsType" (settings/initPage "settingsType")
+    "settingsTime" (settings/initPage "settingsTime")
 
     "page3" (do
               (set! (.-href js/location) "#page3")
