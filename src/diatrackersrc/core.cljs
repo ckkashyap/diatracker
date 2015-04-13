@@ -5,7 +5,6 @@
    [diatrackersrc.storage :as store]
    [diatrackersrc.pages.adddata :as adddata]
    [diatrackersrc.navigate :as navigate]
-   [diatrackersrc.newreadingtype :as newReadingType]
   ))
 
 (enable-console-print!)
