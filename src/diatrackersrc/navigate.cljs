@@ -19,9 +19,6 @@
     (println (records i)))))
 
 
-    
-
-
 (defn initPage [pageNumber]
   (case pageNumber
     "main" (do
@@ -38,11 +35,6 @@
               (set! (.-href js/location) "#page3")
         (showHistory)
         (println "Initializing page 3"))
-
-    "readingType" (do
-              (set! (.-href js/location) "#readingType")
-              (diatrackersrc.newreadingtype/initpage)
-        (println "Initializing page readingType"))
 
     
     (println "Cannot initialize " pageNumber)

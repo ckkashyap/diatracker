@@ -2,9 +2,13 @@
   (:require
    [diatrackersrc.consts :as consts]
    [diatrackersrc.dom :as dom]
+   [clojure.string :as string]   
    [diatrackersrc.storage :as store]
   ))
 
+
+
+  
 
 (defn backButton [to] (str
 "	<div class=\"horizontalList\">"
@@ -18,6 +22,7 @@
 "      <div id=\"readingType\" class=\"fullPageVisible\">"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"settingsList\" class=\"reading\">"
+(string/join (map #(str "<option>" (:v %) "</option>") (store/fetchAll type {:v true})))
 "	  </select>"
 "	</div>"
 "	<div class=\"horizontalList\">"
@@ -26,10 +31,10 @@
 "	  </button>"
 "	</div>"
 "	<div class=\"horizontalList\">"
-"	  <input id=\"readingTypeNew\" class=\"reading\" placeholder=\"Enter new type\"/>"
+"	  <input id=\"newItem\" class=\"reading\" placeholder=\"Enter new type\"/>"
 "	</div>"
 "	<div class=\"horizontalList\">"
-"	  <button class=\"bigButton\" onclick=\"diatrackersrc.newreadingtype.addNewType()\">"
+"	  <button class=\"bigButton\" onclick=\"diatrackersrc.pages.settings.addType('" type "')\">"
 "            Add"
 "	  </button>"
 "	</div>"
@@ -54,9 +59,11 @@
 "	</div>"
 "      </div>")
 
-"settingsType" (editPage "type")
+"settingsType" (do  (editPage "type"))
+"type" (do  (editPage "type"))
 
 "settingsTime" (editPage "time")
+"time" (editPage "time")
 
 ))
 
@@ -67,3 +74,12 @@
         _ (set! (.-innerHTML (dom/getElementById "fullscreen")) (html page))
         ]
   (println "init settings page " page)))
+
+(defn ^:export addType [t]
+  (let [
+        value (dom/getElementValById "newItem")
+        ]
+    (if (not (= value ""))
+      (do
+        (store/insert t {:v value})
+        (initPage t)))))

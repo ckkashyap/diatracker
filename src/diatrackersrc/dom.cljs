@@ -3,6 +3,9 @@
 (defn getElementById [id]
    (.getElementById js/document id))
              
+(defn getElementValById [id]
+   (.-value (getElementById id)))
+             
 
 
 (defn addListItem [selectID, itemText]

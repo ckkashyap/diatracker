@@ -36,6 +36,7 @@
 
 
 (defn fetchRecord [table recordID placeHolder]
+  (println (str "fetchRecord called with " table ", " recordID ", "placeHolder))
   (reduce-kv (fn [m k _] 
                (let [
                      col (str table k recordID)
@@ -66,17 +67,19 @@
         (recur (dec i) (dec id) (conj v (fetchRecord table id r)))))))
   
 
-;(defn fetchAll [table r]
-;  (let
-;      [
-;       maxID (getMaxID table)
-;       _ (println "Max ID " maxID)
-;       startID (- maxID 1)
-;       ]
-;  (loop [id startID v []]
-;    (if (or (= i 0) (< id 0))
-;      (do
-;        (println v)
-;        v)
-;        (recur (dec i) (dec id) (conj v (fetchRecord table id r)))))))
-  
+(defn fetchAll [table r]
+  (let
+      [
+       maxID (getMaxID table)
+       startID (- maxID 1)
+       ]
+  (loop [id startID v []]
+    (if (< id 0)
+      v
+      (let [
+            record (fetchRecord table id r)
+            newVector (conj v record)
+            ]
+        (recur (dec id) newVector))))))  
+
+
