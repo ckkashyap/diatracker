@@ -29,11 +29,11 @@
 "	</div>"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"settingsList\" class=\"reading\">"
-(string/join (map #(str "<option>" (:v %) "</option>") (store/fetchAll type {:v true})))
+(string/join (map #(str "<option value=\"" (:id %) "\">" (:v %) "</option>") (store/fetchAll type {:v true})))
 "	  </select>"
 "	</div>"
 "	<div class=\"horizontalList\">"
-"	  <button class=\"bigButton\" onclick=\"location.href='#settings'\">"
+"	  <button class=\"bigButton\" onclick=\"diatrackersrc.pages.settings.removeItem('" type "')\">"
 "            Delete existing"
 "	  </button>"
 "	</div>"
@@ -90,3 +90,11 @@
       (do
         (store/insert t {:v value})
         (initPage t)))))
+
+
+(defn ^:export removeItem [type]
+  (let [
+        id (dom/getValFromList "settingsList")
+        ]
+  (store/delete type id)
+  (initPage type)))

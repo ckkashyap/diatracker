@@ -87,18 +87,11 @@
         year (.getElementById js/document "adddataYear")
         yearVal (.-value year)
 
-        getValFromList (fn [n]
-                         (let [
-                               div (.getElementById js/document n)
-                               idx (.-selectedIndex div)
-                               val (.-value (aget (.-options div) idx))
-                               ] val))
 
-
-        monthVal (getValFromList "adddataMonthList")
-        dayVal (getValFromList "adddataDayList")
-        foodVal (getValFromList "adddataFoodList")
-        typeVal (getValFromList "adddataTypeList")
+        monthVal (dom/getValFromList "adddataMonthList")
+        dayVal (dom/getValFromList "adddataDayList")
+        foodVal (dom/getValFromList "adddataFoodList")
+        typeVal (dom/getValFromList "adddataTypeList")
 
 
         ]

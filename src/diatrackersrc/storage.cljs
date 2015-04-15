@@ -20,8 +20,14 @@
   (getItem (str table "MaxID")))
   
 
+(defn deletedEntryName [table recordID]
+  (str table :deleted recordID))
+
 (defn delete [table recordID]
-  (setItem (str table :delted recordID) true))
+  (setItem (deletedEntryName table recordID) true))
+
+(defn isRecordDeleted [table id]
+  (not (getItem (deletedEntryName table id))))
 
 (defn insert [table record]
   (let [
@@ -37,12 +43,13 @@
 
 (defn fetchRecord [table recordID placeHolder]
   (println (str "fetchRecord called with " table ", " recordID ", "placeHolder))
-  (reduce-kv (fn [m k _] 
-               (let [
-                     col (str table k recordID)
-                     v (getItem col)
-                     ] (println k "->" v col  m) (assoc m k v)))  {} placeHolder ))
-        
+  (if (isRecordDeleted table recordID)
+    (reduce-kv (fn [m k _] 
+                 (let [
+                       col (str table k recordID)
+                       v (getItem col)
+                       ] (assoc m k v)))  {:id recordID} placeHolder )))
+  
 
 (defn persistRecord [m d y f v t c];month date year food value type  comment
   (let
@@ -78,7 +85,7 @@
       v
       (let [
             record (fetchRecord table id r)
-            newVector (conj v record)
+            newVector (if record (conj v record) v)
             ]
         (recur (dec id) newVector))))))  
 

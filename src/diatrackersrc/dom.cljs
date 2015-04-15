@@ -44,3 +44,11 @@
   (let [
         pd (getElementById "pageNumber")
         ] (set! (.-innerHTML pd) n)))
+
+
+(defn getValFromList [n]
+                         (let [
+                               sel (getElementById n)
+                               idx (.-selectedIndex sel)
+                               val (.-value (aget (.-options sel) idx))
+                               ] val))
