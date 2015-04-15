@@ -21,6 +21,13 @@
 (defn editPage [type] (str
 "      <div id=\"readingType\" class=\"fullPageVisible\">"
 "	<div class=\"horizontalList\">"
+"<div class=\"reading\">"
+(case type
+"type" "Category"
+"time" "Time of Day")  
+"</div>"
+"	</div>"
+"	<div class=\"horizontalList\">"
 "	  <select id=\"settingsList\" class=\"reading\">"
 (string/join (map #(str "<option>" (:v %) "</option>") (store/fetchAll type {:v true})))
 "	  </select>"

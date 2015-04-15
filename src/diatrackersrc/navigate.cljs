@@ -11,7 +11,7 @@
 
 (defn ^:export showHistory []
   (let [
-        records (store/readLastNRecords "table" 10 {:m "" :c ""})
+        records (store/readLastNRecords "table" 10 {:m "" :c "" :t "" :f "" :v ""})
         countOfRecords (count records)
        ]
        

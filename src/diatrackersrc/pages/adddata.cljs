@@ -26,12 +26,12 @@
 "	</div>"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"adddataFoodList\" class=\"reading\">"
-(string/join (map #(str "<option>" % "</option>") timeList))
+(string/join (map #(str "<option>" (:v %) "</option>") (store/fetchAll "time" {:v true})))
 "	  </select>"
 "	</div>"
 "	<div class=\"horizontalList\">"
 "	  <select id=\"adddataTypeList\" class=\"reading\">"
-(string/join (map #(str "<option>" % "</option>") typeList))
+(string/join (map #(str "<option>" (:v %) "</option>") (store/fetchAll "type" {:v true})))
 "	  </select>"
 "	</div>"
 ""
@@ -112,10 +112,5 @@
         (set! (.-value comments) "")      
         true)
       (do
-        ;REMOVE
-        (dom/getListItems "adddataFoodList")
-        (dom/addListItem "adddataFoodList" "hello world")
-        (dom/getListItems "adddataFoodList")
-        ;ENDREMOVE
         (js/alert "Please enter a valid value")
         false))))
